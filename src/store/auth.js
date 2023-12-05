@@ -20,18 +20,14 @@ export const useAuth = defineStore('auth', {
         },
 
         register(name, email, password) {
-            return axios.post('api/register', { 
-                name: name,
-                email: email,
-                password: password,
-            })
+            return axios.post('api/register', {  name: name, email: email, password: password })
         },
 
-        // verifyEmail(token) {
-        //     return axios.post('api/verify-email', { 
-        //         token
-        //     })
-        // },
+        verifyEmail(token) {
+            return axios.post('api/verify-email', { 
+                token
+            })
+        },
 
         // forgotPassword(email) {
         //     return axios.post('api/forgot-password', {

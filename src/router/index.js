@@ -40,6 +40,19 @@ const routes = [
       }
     ]
   },
+
+  {
+    path: '/verificar-email',
+    component: () => import('@/layouts/Auth.vue'),
+    children: [
+      {
+        path: '', 
+        component: () => import('@/views/VerifyEmail.vue'),
+        name: 'verifyEmail',
+        beforeEnter: redirectIfAuthenticated,
+      }
+    ]
+  },
   
 ]
 
