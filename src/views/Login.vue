@@ -3,6 +3,13 @@
         <v-text-field v-model="email" />
         <v-text-field v-model="password" />
         <v-btn color="primary" class="my-2 mx-4" @click="login">login</v-btn>
+        <h6 class="text-h6 text-muted font-weight-medium d-flex justify-center align-center mt-3">
+            Novo aqui?
+            <RouterLink :to="{ name: 'register' }"
+                class="text-red-lighten-2 text-decoration-none text-body-1 opacity-1 font-weight-medium pl-2">
+                <h4>Crie sua conta</h4>
+            </RouterLink>
+        </h6>
     </v-container>    
 </template>
 
@@ -10,6 +17,7 @@
 import { useAuth } from '@/store/auth';
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
+import { RouterLink } from 'vue-router';
 
 const router = useRouter();
 const authStore = useAuth();

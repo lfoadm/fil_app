@@ -28,6 +28,18 @@ const routes = [
     ]
   },
 
+  {
+    path: '/cadastrar',
+    component: () => import('@/layouts/Auth.vue'),
+    children: [
+      {
+        path: '',
+        component: () => import('@/views/Register.vue'),
+        name: 'register',
+        beforeEnter: redirectIfAuthenticated,
+      }
+    ]
+  },
   
 ]
 

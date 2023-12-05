@@ -1,0 +1,78 @@
+<template>
+    <div class="authentication mt-9">
+        <v-container fluid class="pa-3">
+            <v-row class="h-100vh d-flex justify-center align-center">
+                <v-col cols="12" lg="4" xl="3" class="d-flex align-center">
+                    <v-card rounded="md" elevation="10" class="px-sm-1 px-0 withbg mx-auto" max-width="500">
+                        <v-card-item class="pa-sm-8">
+                            
+                            
+                                <v-row class="d-flex mb-3">
+                                    
+                                    <v-col cols="12">
+                                        <v-label class="font-weight-bold mb-1">Nome completo</v-label>
+                                        <v-text-field
+                                            v-model="name"
+                                            variant="outlined"
+                                            color="primary"
+                                        />
+                                    </v-col>
+
+                                    <v-col cols="12">
+                                        <v-label class="font-weight-bold mb-1">E-mail</v-label>
+                                        <v-text-field
+                                            v-model="email"
+                                            variant="outlined"
+                                            type="email"
+                                            color="primary"
+                                        />
+                                    </v-col>
+
+                                    <v-col cols="12">
+                                        <v-label class="font-weight-bold mb-1">Senha</v-label>
+                                        <v-text-field
+                                            v-model="password"
+                                            variant="outlined"
+                                            type="password"
+                                            color="primary"
+                                        />
+                                    </v-col>
+
+                                    <v-col cols="12">
+                                        <v-btn @click="register" class="text-white" color="primary" size="large" block flat
+                                            >Cadastrar</v-btn>
+                                    </v-col>
+                                </v-row>
+
+                            <h6 class="text-h6 text-muted font-weight-medium d-flex justify-center align-center mt-3">
+                                Já é cadastrado?
+                                <RouterLink :to="{ name: 'login' }"
+                                    class="text-red-lighten-2 text-decoration-none text-body-1 opacity-1 font-weight-medium pl-2">
+                                    Login
+                                </RouterLink>
+                            </h6>
+                        </v-card-item>
+                    </v-card>
+                </v-col>
+            </v-row>
+        </v-container>
+    </div>
+</template>
+  
+<script setup>
+import { ref } from 'vue';
+import { RouterLink } from 'vue-router';
+import { useAuth } from '../store/auth';
+import { auth } from '@/router/guard';
+
+const name = ref('');
+const email = ref('');
+const password = ref('');
+
+function register() {
+    const authStore = useAuth();
+    authStore.register( name.value, email.value, password.value )
+}
+
+
+</script>

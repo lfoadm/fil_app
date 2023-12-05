@@ -19,13 +19,13 @@ export const useAuth = defineStore('auth', {
             
         },
 
-        // register(name = '', email, password) {
-        //     return axios.post('api/register', { 
-        //         name: name,
-        //         email: email,
-        //         password: password,
-        //     })
-        // },
+        register(name, email, password) {
+            return axios.post('api/register', { 
+                name: name,
+                email: email,
+                password: password,
+            })
+        },
 
         // verifyEmail(token) {
         //     return axios.post('api/verify-email', { 
