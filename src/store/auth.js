@@ -29,17 +29,17 @@ export const useAuth = defineStore('auth', {
             })
         },
 
-        // forgotPassword(email) {
-        //     return axios.post('api/forgot-password', {
-        //         email
-        //     })
-        // },
+        forgotPassword(email) {
+            return axios.post('api/forgot-password', {
+                email
+            })
+        },
 
-        // resetPassword(token, password) {
-        //     return axios.post('api/reset-password', {
-        //         token, password
-        //     })
-        // },
+        resetPassword(token, password) {
+            return axios.post('api/reset-password', {
+                token, password
+            })
+        },
                 
         logout() {
             const meStore = useMe()

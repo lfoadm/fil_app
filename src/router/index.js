@@ -54,6 +54,18 @@ const routes = [
     ]
   },
   
+  {
+    path: '/esqueci-senha',
+    component: () => import('@/layouts/Auth.vue'),
+    children: [
+      {
+        path: '', 
+        component: () => import('@/views/ForgotPassword.vue'),
+        name: 'ForgotPassword',
+        beforeEnter: redirectIfAuthenticated,
+      }
+    ]
+  },
 ]
 
 const router = createRouter({
