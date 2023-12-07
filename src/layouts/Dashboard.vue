@@ -1,6 +1,6 @@
 <template>
     <v-app> <!-- theme="dark" -->
-        <!-- <TheHeader /> -->
+        <TheHeader />
         <v-main>
             <v-container fluid class="page-wrapper">
                 <div class="maxWidth">
@@ -12,6 +12,6 @@
 </template>
 
 <script setup>
-// import TheHeader from '@/components/Shell/TheHeader.vue';
+import TheHeader from '@/components/Shell/TheHeader.vue';
 
 </script>

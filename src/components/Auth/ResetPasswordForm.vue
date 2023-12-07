@@ -45,9 +45,9 @@
 <script setup>
 import { useAuth } from "@/store/auth";
 import { ref } from "vue";
-// import { useForm, useField } from 'vee-validate'
+import { useForm, useField } from 'vee-validate'
 import messages from "@/utils/messages";
-// import * as yup from 'yup'
+import * as yup from 'yup'
 
 const emits = defineEmits(['after-reset'])
 const errorMessage = ref(null)

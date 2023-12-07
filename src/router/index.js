@@ -66,6 +66,20 @@ const routes = [
       }
     ]
   },
+
+  {
+    path: '/cadastros/veiculos',
+    component: () => import('@/layouts/Dashboard.vue'),
+    beforeEnter: auth,
+    children: [
+      {
+        path: '',
+        name: 'trucks',
+        component: () => import('@/views/Entities/Truck.vue'),
+      }
+    ]
+  },
+
 ]
 
 const router = createRouter({

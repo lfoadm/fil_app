@@ -5,9 +5,9 @@
           <v-col cols="12" lg="4" xl="3" class="d-flex align-center">
             <v-card rounded="md" elevation="10" class="px-sm-1 px-0 withbg mx-auto" max-width="500">
               <v-card-item class="pa-sm-8">
-                <!-- <div class="d-flex justify-center py-4">
+                <div class="d-flex justify-center py-4">
                   <Logo />
-                </div> -->
+                </div>
                 
                 <div class="text-body-1 text-muted text-center mb-6">Lance</div>
 
@@ -45,7 +45,7 @@
   
   <script setup>
   import { ref } from 'vue';
-  // import Logo from "@/components/logo/Logo.vue";
+  import Logo from "@/components/logo/Logo.vue";
   import ForgotPasswordForm from "@/components/Auth/ForgotPasswordForm.vue";
   import ResetPasswordForm from "@/components/Auth/ResetPasswordForm.vue";
   

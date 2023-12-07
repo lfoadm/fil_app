@@ -5,8 +5,22 @@
                 <v-col cols="12" lg="4" xl="3" class="d-flex align-center">
                     <v-card rounded="md" elevation="10" class="px-sm-1 px-0 withbg mx-auto" max-width="500">
                         <v-card-item class="pa-sm-8">
+                            <div class="d-flex justify-center py-4">
+                                <Logo />
+                            </div>
+
+                            <div class="text-body-1 text-muted text-center mb-6">Cadastro</div>
+
+                            <v-alert
+                                v-if="errorMessage"
+                                type="error"
+                                :text="errorMessage"
+                                :icon="false"
+                                class="mb-3"
+                                color="alert"
+                            />
                             
-                            
+                            <form @submit="submit">
                                 <v-row class="d-flex mb-3">
                                     
                                     <v-col cols="12">
@@ -14,6 +28,8 @@
                                         <v-text-field
                                             v-model="name"
                                             variant="outlined"
+                                            :hide-details="!errors.name"
+                                            :error-messages="errors.name"
                                             color="primary"
                                         />
                                     </v-col>
@@ -25,6 +41,8 @@
                                             variant="outlined"
                                             type="email"
                                             color="primary"
+                                            :hide-details="!errors.email"
+                                            :error-messages="errors.email"
                                         />
                                     </v-col>
 
@@ -35,14 +53,17 @@
                                             variant="outlined"
                                             type="password"
                                             color="primary"
+                                            :hide-details="!errors.password"
+                                            :error-messages="errors.password"
                                         />
                                     </v-col>
 
                                     <v-col cols="12">
-                                        <v-btn @click="register" class="text-white" color="primary" size="large" block flat
-                                            >Cadastrar</v-btn>
+                                        <v-btn type="submit" class="text-white" color="primary" size="large" block flat :loading="isSubmitting"
+                                            :disabled="isSubmitting">Cadastrar</v-btn>
                                     </v-col>
                                 </v-row>
+                            </form>
 
                             <h6 class="text-h6 text-muted font-weight-medium d-flex justify-center align-center mt-3">
                                 Já é cadastrado?
@@ -61,18 +82,38 @@
   
 <script setup>
 import { ref } from 'vue';
-import { RouterLink } from 'vue-router';
-import { useAuth } from '../store/auth';
-import { auth } from '@/router/guard';
+import { useAuth } from '@/store/auth';
+import { useRouter } from 'vue-router';
+import Logo from "@/components/logo/Logo.vue";
+import messages from "@/utils/messages";
+import * as yup from 'yup'
+import { useForm, useField } from 'vee-validate'
 
-const name = ref('');
-const email = ref('');
-const password = ref('');
+const authStore = useAuth();
+const router = useRouter();
+const errorMessage = ref(null)
 
-function register() {
-    const authStore = useAuth();
-    authStore.register( name.value, email.value, password.value )
-}
+const schema = yup.object({
+    name: yup.string().required().label('Name'),
+    email: yup.string().required().email().label('E-mail'),
+    password: yup.string().required().min(8).label('password'),
+});
 
+const { handleSubmit, errors, isSubmitting } = useForm({
+    validationSchema: schema,
+})
+
+const submit = handleSubmit((values) => {
+    errorMessage.value = null
+    return authStore.register(values.name, values.email, values.password).then(() => {
+        router.push({ name: 'dashboard' });
+    }).catch((e) => {
+        errorMessage.value = messages[e.response.data.error]
+    })
+})
+
+const { value: name } = useField('name');
+const { value: email } = useField('email');
+const { value: password } = useField('password');
 
 </script>

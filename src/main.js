@@ -20,14 +20,14 @@ import vuetify from '@/plugins/vuetify';
 import router from '@/router';
 import pinia from '@/store';
 import { useMe } from '@/store/me';
-//import { useAuthUserStore } from '@/store/AuthUserStore';
+// import { useAuthUserStore } from '@/store/AuthUserStore';
 
 
 const app = createApp(App)
 
 app.use(pinia)
-//const authUserStore = useAuthUserStore();
-//authUserStore.getAuthUser();
+// const authUserStore = useAuthUserStore();
+// authUserStore.getAuthUser();
 const meStore = useMe();
 meStore.getMe()
   .catch(() => {})
