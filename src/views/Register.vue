@@ -24,12 +24,23 @@
                                 <v-row class="d-flex mb-3">
                                     
                                     <v-col cols="12">
-                                        <v-label class="font-weight-bold mb-1">Nome completo</v-label>
+                                        <v-label class="font-weight-bold mb-1">Primeiro nome</v-label>
                                         <v-text-field
-                                            v-model="name"
+                                            v-model="firstName"
                                             variant="outlined"
-                                            :hide-details="!errors.name"
-                                            :error-messages="errors.name"
+                                            :hide-details="!errors.firstName"
+                                            :error-messages="errors.firstName"
+                                            color="primary"
+                                        />
+                                    </v-col>
+
+                                    <v-col cols="12">
+                                        <v-label class="font-weight-bold mb-1">Sobrenome</v-label>
+                                        <v-text-field
+                                            v-model="lastName"
+                                            variant="outlined"
+                                            :hide-details="!errors.last_name"
+                                            :error-messages="errors.last_name"
                                             color="primary"
                                         />
                                     </v-col>
@@ -68,7 +79,7 @@
                             <h6 class="text-h6 text-muted font-weight-medium d-flex justify-center align-center mt-3">
                                 Já é cadastrado?
                                 <RouterLink :to="{ name: 'login' }"
-                                    class="text-red-lighten-2 text-decoration-none text-body-1 opacity-1 font-weight-medium pl-2">
+                                    class="text-indigo-accent-2 text-decoration-none text-body-1 opacity-1 font-weight-medium pl-2">
                                     Login
                                 </RouterLink>
                             </h6>
@@ -94,9 +105,9 @@ const router = useRouter();
 const errorMessage = ref(null)
 
 const schema = yup.object({
-    name: yup.string().required().label('Name'),
+    firstName: yup.string().required().label('Nome'),
     email: yup.string().required().email().label('E-mail'),
-    password: yup.string().required().min(8).label('password'),
+    password: yup.string().required().min(8).label('Senha'),
 });
 
 const { handleSubmit, errors, isSubmitting } = useForm({
@@ -105,14 +116,15 @@ const { handleSubmit, errors, isSubmitting } = useForm({
 
 const submit = handleSubmit((values) => {
     errorMessage.value = null
-    return authStore.register(values.name, values.email, values.password).then(() => {
+    return authStore.register(values.first_name, values.email, values.password).then(() => {
         router.push({ name: 'dashboard' });
     }).catch((e) => {
         errorMessage.value = messages[e.response.data.error]
     })
 })
 
-const { value: name } = useField('name');
+const { value: firstName } = useField('firstName');
+const { value: lastName } = useField('lastName');
 const { value: email } = useField('email');
 const { value: password } = useField('password');
 

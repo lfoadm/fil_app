@@ -75,7 +75,7 @@ const routes = [
       {
         path: '',
         name: 'trucks',
-        component: () => import('@/views/Entities/Truck.vue'),
+        component: () => import('@/views/Entities/Trucks/Truck.vue'),
       }
     ]
   },

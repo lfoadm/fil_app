@@ -46,7 +46,7 @@ export const useAuth = defineStore('auth', {
             return axios.post('api/logout').then(() => {
                 meStore.user = null
             })
-        }
+        },
     },
 
     getters: {

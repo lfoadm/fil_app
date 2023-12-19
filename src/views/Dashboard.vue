@@ -1,18 +1,19 @@
 <template>
-    <VContainer>
+    <VContainer class="w-100">
         Dashboard <br>
         
-        <h1 color="primary">Leandro Oliveira</h1>
+        <h1 color="primary">{{ user.first_name }}</h1>
         <pre>{{ user }}</pre>
+        <hr class="my-10">
+        <div class="bg-blue-lighten-3">{{ can }}</div>
+        
 
     </VContainer>
 </template>
   
 <script setup>
 import { useMe } from "@/store/me";
-import { ref } from "vue";
-
-const loading = ref(false)
 const { user, can } = useMe();
+
 
 </script>

@@ -2,7 +2,7 @@
     <div class="logo">
         <RouterLink to="/">
             <v-img
-            :width="200"
+            :width="100"
             aspect-ratio="16/9"
             cover
             src="../../assets/images/logos/logo-light.png"

@@ -49,7 +49,7 @@
                                         <div class="d-flex flex-wrap align-center   ">
                                             <div class="ml-sm-auto">
                                                 <RouterLink :to="{ name: 'ForgotPassword' }"
-                                                    class="text-red-lighten-2 text-decoration-none text-body-1 opacity-1 font-weight-medium">
+                                                    class="text-indigo-accent-2 text-decoration-none text-body-1 opacity-1 font-weight-medium">
                                                     Esqueceu a senha?</RouterLink>
                                             </div>
                                         </div>
@@ -63,7 +63,7 @@
                             <h6 class="text-h6 text-muted font-weight-medium d-flex justify-center align-center mt-3">
                                 Novo aqui?
                                 <RouterLink :to="{ name: 'register' }"
-                                    class="text-red-lighten-2 text-decoration-none text-body-1 opacity-1 font-weight-medium pl-2">
+                                    class="text-indigo-accent-2 text-decoration-none text-body-1 opacity-1 font-weight-medium pl-2">
                                     <h4>Crie sua conta</h4>
                                 </RouterLink>
                             </h6>
